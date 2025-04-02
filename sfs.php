@@ -3,14 +3,6 @@ require 'vendor/autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-$host = "localhost";
-$db_name = "user_management";
-$username = "root";  // Change this if needed
-$password = "";
-$secret_key = "your_secret_key";  // Change this
-
-// Database Connection
-try {
     $pdo = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
