@@ -6,7 +6,20 @@ use Firebase\JWT\Key;
 $host = "localhost";
 $db_name = "user_management";
 $username = "root";  // Change this if needed
-$password = "";hp://input"));
+$password = "";
+$secret_key = "your_secret_key";  // Change this
+
+// Database Connection
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die(json_encode(["error" => "Database connection failed: " . $e->getMessage()]));
+}
+
+// Handle Request
+$action = $_GET['action'] ?? '';
+$data = json_decode(file_get_contents("php://input"));
 
 // Register User
 if ($action == 'register') {
